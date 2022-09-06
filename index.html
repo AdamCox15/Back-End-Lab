@@ -13,6 +13,12 @@
     <ul id="people" class=""></ul>
 
     <button id="button">GET Friends List</button>
+    <button class="add" id="addFriend"> <input class="add" type="text" id="added">Add to Friends List</button>
+    
+    <!-- <label for="lab">
+      <input type="text" id="name"><button id="button1">Delete Friend</button>
+    </label>
+  -->
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -32,6 +38,24 @@
               '<li class="text-danger">' + err.message + "</li>";
           });
       };
-    </script>
+
+      document.getElementById('addFriend').onclick = function() {
+        let data = {test:document.getElementById('added').value}
+        //console.log(data)
+        axios
+          .post("http://localhost:4000/api/users", data)
+          .then((response) => {
+            console.log(response.data)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      };
+
+    //  document.getElementById('button1').onclick = function () {
+    //   axios
+    //   .delete('https://localhost:4000/api/users', {name}) };
+     </script>
+
   </body>
 </html>
